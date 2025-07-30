@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-html-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-html-app
+  template:
+    metadata:
+      labels:
+        app: my-html-app
+    spec:
+      containers:
+      - name: html-container
+        image: shubham6444/deployment-gamut:latest
+        ports:
+        - containerPort: 80
