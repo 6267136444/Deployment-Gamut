@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: html-container
-        image: shubham6444/deployment-gamut:latest
+        image: shubham6444/deployment-gamut:PLACEHOLDER_TAG
         imagePullPolicy: Always
         ports:
         - containerPort: 80
