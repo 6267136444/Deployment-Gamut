@@ -21,12 +21,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: shubham6444/deployment-gamut:latest
+      - name: Set image tag
+      run: echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
+
+     - name: Build Docker image with Git SHA tag
+     run: docker build -t shubham6444/deployment-gamut:${{ env.IMAGE_TAG }} .
+
+    - name: Push Docker image
+    run: docker push shubham6444/deployment-gamut:${{ env.IMAGE_TAG }}
+
 
       - name: Azure Login
         uses: azure/login@v1
